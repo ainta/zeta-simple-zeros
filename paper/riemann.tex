@@ -1,0 +1,499 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\allowdisplaybreaks[2]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\F}{\mathrm F}
+\newcommand{\R}{\mathbb R}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cD}{\mathcal D}
+
+\title{More than 67.3\% of the zeros of the Riemann zeta function are simple and lie on the critical line}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Let $N(T,2T)$ count the zeros of the Riemann zeta function with ordinates in
+$(T,2T]$, with multiplicity, and let $N_0^s(T,2T)$ count the simple zeros on
+the critical line in that interval.  We refine the rank--trace argument of
+Claude~\cite{Claude26} and prove
+\[
+ \liminf_{T\to\infty}\frac{N_0^s(T,2T)}{N(T,2T)}
+ \ge 0.673008527927\ldots .
+\]
+The proof uses the analytic estimates of Theorem~D in~\cite{Claude26} and a
+rigorously verified seven-point inequality for the simple-zero vectors.
+\end{abstract}
+
+\section{Statement and setup}
+
+We use the notation and normalisations of~\cite[\S\S2,4,7.1]{Claude26}.  Put
+\[
+ \ell:=\log\frac{T}{2\pi},\qquad I:=(T,2T],\qquad
+ D_0:=T^{1/2},\qquad I':=(T-D_0,2T+D_0].
+\]
+For the optimised test family of Theorem~D, $L=\ell$ and
+\[
+ \phi(u)=\cos\!\left(\frac{\sqrt2\,u}{\ell}\right)^{1/2}
+ \varrho(L/2-|u|),
+\]
+where the fixed-width ramp $\varrho$ is defined in~\cite[\S2.2]{Claude26}.
+Let
+\[
+ a:=\frac1L\int_{\R}\phi(u)^2\,du,
+ \qquad \widehat G:=\frac{G}{aL^2},
+ \qquad \widehat A:=\frac{A}{aL^2},
+ \qquad d:=\left\lfloor\frac{LT}{2\pi}\right\rfloor.
+\]
+As in~\cite[\S4.1]{Claude26}, divide the zeros in $I'$ into the simple
+critical-line zeros $\cS_1$, the distinct multiple critical-line zeros
+$\cS_2$, and the unordered off-line pairs $\cP$.  Write
+\[
+ s_1:=\#\cS_1,\qquad s_2:=\#\cS_2,\qquad p:=\#\cP.
+\]
+Then
+\begin{equation}\label{eq:Nlower}
+ N(I')\ge s_1+2s_2+2p.
+\end{equation}
+For $\rho\in\cS_1$, define
+\[
+ u_\rho:=\bigl(\widehat\phi(\gamma_\rho-\tau_k)\bigr)_{0\le k<d}
+ \in\R^d,
+ \qquad
+ v_\rho:=\frac{u_\rho}{\sqrt a\,L}.
+\]
+The simple-zero part of $\widehat A$ is
+\[
+ P_1=VV^{\mathsf T}=\sum_{\rho\in\cS_1}v_\rho v_\rho^{\mathsf T},
+\]
+where the columns of $V$ are the $v_\rho$.  By Lemma~2.2
+of~\cite{Claude26}, $\|v_\rho\|\le1$.  For
+\[
+ Q':=\widehat A-P_1,
+\]
+the decomposition in the proof of Proposition~4.4 of~\cite{Claude26} gives
+\begin{equation}\label{eq:index}
+ n_+(Q')\le s_2+p.
+\end{equation}
+
+Set
+\[
+ H_{\mathrm{MT}}
+ :=\frac32-\frac1{\sqrt2}\cot\frac1{\sqrt2}
+ =0.6725007036794116457\ldots .
+\]
+Theorem~D of~\cite{Claude26} proves the lower bound $H_{\mathrm{MT}}$.
+We prove the following refinement.
+
+\begin{theorem}\label{thm:main}
+One has
+\[
+ \liminf_{T\to\infty}
+ \frac{N_0^s(T,2T)}{N(T,2T)}
+ \ge
+ \frac{1{,}345{,}000H_{\mathrm{MT}}-2{,}680}{1{,}340{,}003}
+ =0.6730085279277797613\ldots .
+\]
+\end{theorem}
+
+\section{A stability refinement of the rank--trace inequality}
+
+Define the convex function
+\begin{equation}\label{eq:Psi}
+ \Psi(t):=
+ \begin{cases}
+  (t-1)^2,&0\le t\le2,\\
+  2t-3,&t\ge2.
+ \end{cases}
+\end{equation}
+For a positive semidefinite matrix $M$, let
+\[
+ \cD(M):=\tr\Psi(M).
+\]
+
+\begin{lemma}[Stability-enhanced rank--trace inequality]\label{lem:stable-rank-trace}
+Let $V$ be a $d\times r$ matrix whose columns have norm at most one.  Put
+$P=VV^*\succeq0$ and $M=V^*V$, and let $Q$ be Hermitian with $n_+(Q)\le b$.
+Then
+\begin{equation}\label{eq:stable-rank-trace}
+ \|P+Q\|_{\F}^2
+ \ge 4\tr(P+Q)-3r-4b+\cD(M).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $Q=Q_+-Q_-$ with $Q_\pm\succeq0$, $Q_+Q_-=0$, and
+$\operatorname{rank}Q_+\le b$.  Since $P,Q_+\succeq0$,
+\[
+ \|P+Q\|_{\F}^2
+ \ge \|P-Q_-\|_{\F}^2+\|Q_+\|_{\F}^2.
+\]
+If $q_j>0$ are the nonzero eigenvalues of $Q_+$, then
+$q_j^2\ge4q_j-4$, so
+\begin{equation}\label{eq:qplus}
+ \|Q_+\|_{\F}^2\ge4\tr Q_+-4b.
+\end{equation}
+Let $p_1\ge\cdots\ge p_r\ge0$ be the eigenvalues of $M$ (the nonzero
+eigenvalues of $P$, padded by zeros), and let $n_1\ge n_2\ge\cdots\ge0$
+be the eigenvalues of $Q_-$.  Von Neumann's trace inequality gives
+$\tr(PQ_-)\le\sum_{i\le r}p_in_i$, hence
+\[
+ \|P-Q_-\|_{\F}^2+4\tr Q_-
+ \ge \sum_{i\le r}\bigl((p_i-n_i)^2+4n_i\bigr).
+\]
+For $p\ge0$,
+\[
+ \min_{n\ge0}\bigl((p-n)^2+4n\bigr)
+ =\begin{cases}p^2,&0\le p\le2,\\4p-4,&p\ge2,\end{cases}
+ =2p-1+\Psi(p).
+\]
+Therefore
+\begin{equation}\label{eq:qminus}
+ \|P-Q_-\|_{\F}^2
+ \ge2\tr P-r+\cD(M)-4\tr Q_-.
+\end{equation}
+Combining \eqref{eq:qplus} and \eqref{eq:qminus} gives
+\[
+ \|P+Q\|_{\F}^2
+ \ge4\tr(P+Q)-2\tr P-r-4b+\cD(M).
+\]
+Since $\tr P$ is the sum of the squared column norms of $V$, $\tr P\le r$.
+\end{proof}
+
+\begin{corollary}\label{cor:count}
+With $M:=V^{\mathsf T}V$,
+\begin{equation}\label{eq:s1}
+ s_1\ge4\tr\widehat A-\|\widehat A\|_{\F}^2-2N(I')+\cD(M).
+\end{equation}
+After removing the tails as in Proposition~4.2 of~\cite{Claude26},
+\begin{equation}\label{eq:global-defect}
+ N_0^s(T,2T)
+ \ge H_{\mathrm{MT}}N(T,2T)+\cD(M^\circ)-o(N(T,2T)),
+\end{equation}
+where $M^\circ$ is the Gram matrix of the retained central simple zeros.
+\end{corollary}
+
+\begin{proof}
+Apply Lemma~\ref{lem:stable-rank-trace} to
+$P_1+Q'=\widehat A$.  Equations \eqref{eq:Nlower} and \eqref{eq:index}
+give
+\[
+ \|\widehat A\|_{\F}^2
+ \ge4\tr\widehat A-3s_1-4s_2-4p+\cD(M)
+ \ge4\tr\widehat A-s_1-2N(I')+\cD(M),
+\]
+which is \eqref{eq:s1}.
+
+Use the same comparison $\widehat A=\widehat G-\widehat E$ and tail
+estimates as in Propositions~4.2 and~4.4 of~\cite{Claude26}.  Pinching the
+full Gram matrix into the retained central block and its complement gives
+$\cD(M)\ge\cD(M^\circ)$ because $X\mapsto\tr\Psi(X)$ is convex and
+unitarily invariant.  Moreover $N(I')=N(T,2T)+o(N(T,2T))$, and Theorem~D
+gives
+\[
+ \tr\widehat G=N(T,2T)(1+o(1)),\qquad
+ \|\widehat G\|_{\F}^2
+ =\left(\frac1{c_1^*}+o(1)\right)N(T,2T),
+\]
+where $2-1/c_1^*=H_{\mathrm{MT}}$.  Substitution in \eqref{eq:s1}
+yields \eqref{eq:global-defect}.
+\end{proof}
+
+\section{The Montgomery--Taylor overlap kernel}
+
+Put $h:=2\pi/L$ and define the normalised ordinate
+\[
+ x_\rho:=\frac{\gamma_\rho-T}{h}
+ =\frac{L(\gamma_\rho-T)}{2\pi}.
+\]
+
+\begin{lemma}\label{lem:kernel-limit}
+Fix $R_0>0$.  Delete the simple zeros in strips of normalised width $L^2$
+at the two ends of the grid.  The number deleted is $o(N(T,2T))$, and
+uniformly for retained simple zeros with $|x_\rho-x_{\rho'}|\le R_0$,
+\begin{equation}\label{eq:kernel-limit}
+ \langle v_\rho,v_{\rho'}\rangle
+ =k(x_\rho-x_{\rho'})+o(1),
+\end{equation}
+where
+\begin{align}
+ k(x)&:=\frac{K(x)}{K(0)},\label{eq:kdef}\\
+ K(x)&:=\int_{-1/2}^{1/2}\cos(\sqrt2\,t)\cos(2\pi xt)\,dt\notag\\
+ &=\frac{\sin(\pi x-1/\sqrt2)}{2\pi x-\sqrt2}
+   +\frac{\sin(\pi x+1/\sqrt2)}{2\pi x+\sqrt2},\label{eq:Kexplicit}
+\end{align}
+and $K(0)=\sqrt2\sin(1/\sqrt2)$.  The singularities in
+\eqref{eq:Kexplicit} are removable.
+\end{lemma}
+
+\begin{proof}
+For the full Gabor grid, Lemma~2.2 of~\cite{Claude26} gives
+\[
+ \frac1{aL^2}\sum_{j\in\mathbb Z}
+ \widehat\phi(\gamma-\tau_j)\widehat\phi(\gamma'-\tau_j)
+ =\frac{\Phi(\gamma-\gamma')}{aL},
+ \qquad \Phi=\widehat{\phi^2}.
+\]
+For points at normalised distance at least $L^2$ from the grid ends, the
+terms with $j\notin[0,d)$ contribute $O(L^{-2})$, uniformly when
+$|x_\rho-x_{\rho'}|$ is bounded, by the $r^{-2}$ decay used
+in~\cite[\S5.3]{Claude26}.
+
+For fixed $x$, substitution $u=Lt$ gives the normalised full-grid overlap
+\begin{equation}\label{eq:normalised-overlap}
+ \frac{\Phi(hx)}{aL}
+ =
+ \frac{\displaystyle\int_{-1/2}^{1/2}
+       \phi(Lt)^2 e^{-2\pi ixt}\,dt}
+      {\displaystyle\int_{-1/2}^{1/2}\phi(Lt)^2\,dt}
+ \longrightarrow \frac{K(x)}{K(0)}.
+\end{equation}
+Indeed,
+$\phi(Lt)^2\to\cos(\sqrt2\,t)\mathbf1_{[-1/2,1/2]}(t)$ in $L^1$;
+the fixed-width taper has rescaled length $O(L^{-1})$.  The convergence in
+\eqref{eq:normalised-overlap} is uniform for $x$ in compact sets.  Together
+with the tail estimate, this proves \eqref{eq:kernel-limit}.  Finally, the
+deleted strips have ordinate length $O(L)$ and contain $O(L^2)=o(N(T,2T))$
+zeros, since $N(t+1)-N(t)\ll\log(t+3)$.
+\end{proof}
+
+Set
+\[
+ w(x):=k(x)^2.
+\]
+
+\section{A seven-point local inequality}
+
+For nonnegative gaps $g_1,\ldots,g_6$, define
+\begin{equation}\label{eq:F6}
+ \mathcal F_6(g_1,\ldots,g_6)
+ :=\frac1{3000}\sum_{i=1}^6g_i
+ +\sum_{r=1}^6\frac{2}{7-r}
+   \sum_{i=1}^{7-r}w(g_i+\cdots+g_{i+r-1}).
+\end{equation}
+The second term contains all $21$ pairwise separations among seven ordered
+points.
+
+\begin{proposition}[Certified local inequality]\label{prop:F6}
+For every $g_1,\ldots,g_6\ge0$,
+\begin{equation}\label{eq:F6bound}
+ \mathcal F_6(g_1,\ldots,g_6)\ge\frac{19}{5000}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Verification]
+The verifier at
+\begin{center}
+ \url{https://github.com/ainta/zeta-simple-zeros}
+\end{center}
+uses Arb interval arithmetic through \texttt{python-flint}.  It evaluates
+the entire-sinc expression
+\[
+ K(x)=\frac12\left(
+ \frac{\sin(\pi x-1/\sqrt2)}{\pi x-1/\sqrt2}
+ +\frac{\sin(\pi x+1/\sqrt2)}{\pi x+1/\sqrt2}
+ \right)
+\]
+at 128-bit precision and constructs rigorous lower bounds for $w$ on a grid
+of mesh $1/4000$.  If $\sum g_i\ge11.4$, the linear term proves the claim.
+On the remaining compact region, the one-variable term
+\[
+ U(g):=\frac g{3000}+\frac13w(g)
+\]
+reduces each coordinate to three certified unions of grid cells.  The
+resulting $3^6$ boxes are proved by interval lower bounds, a certified convex
+tangent bound when applicable, or bisection of the widest coordinate.  The
+program fails if a terminal box remains unresolved.
+
+The committed certificate records \texttt{verified=true}, grid $4000$,
+precision $128$ bits, $707{,}901$ visited nodes, and maximum depth $37$.
+It also records the hashes of the interval tables used in the search.
+\end{proof}
+
+\begin{lemma}\label{lem:block-energy}
+Let $y_1<\cdots<y_m$ with $m\ge7$, and put
+\[
+ E_m:=2\sum_{1\le i<j\le m}w(y_j-y_i).
+\]
+Then
+\begin{equation}\label{eq:block-energy}
+ E_m+\frac1{500}(y_m-y_1)
+ \ge\frac{19}{5000}(m-6).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $g_i=y_{i+1}-y_i$ and sum \eqref{eq:F6bound} over the $m-6$
+consecutive seven-point windows.  A pair spanning $r$ gaps occurs at most
+$7-r$ times and has coefficient $2/(7-r)$ each time, so its total
+contribution is at most $2w(y_j-y_i)$.  Each single gap occurs at most six
+times, giving at most
+\[
+ \frac6{3000}\sum_{i=1}^{m-1}g_i
+ =\frac1{500}(y_m-y_1).
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:block-defect}
+If $G\succeq0$ is Hermitian, then
+\begin{equation}\label{eq:block-defect}
+ \tr\Psi(G)
+ \ge\min\left\{1,\,2\sum_{i<j}|G_{ij}|^2\right\}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If every eigenvalue of $G$ is at most $2$, then
+$\Psi(G)=(G-I)^2$, and
+\[
+ \tr\Psi(G)=\tr(G-I)^2\ge2\sum_{i<j}|G_{ij}|^2.
+\]
+If some eigenvalue $\lambda>2$, then $\Psi(\lambda)=2\lambda-3>1$.
+\end{proof}
+
+Take
+\begin{equation}\label{eq:mA}
+ m:=269,
+ \qquad
+ A_0:=\frac{19}{5000}(m-6)=\frac{4997}{5000}<1.
+\end{equation}
+Let $B$ be a block of $269$ consecutive retained simple zeros.  Write $G_B$
+for its Gram matrix.  If $\operatorname{span}(B)/500\ge A_0$, then
+\eqref{eq:269block} below is immediate.  Otherwise
+$\operatorname{span}(B)<500$, so Lemma~\ref{lem:kernel-limit} applies
+uniformly to every pair in $B$.  Since $m$ is fixed,
+\[
+ 2\sum_{i<j}|(G_B)_{ij}|^2=E_m+o(1).
+\]
+Lemmas~\ref{lem:block-energy} and~\ref{lem:block-defect} give, uniformly in
+$B$,
+\begin{equation}\label{eq:269block}
+ \cD(G_B)+\frac1{500}\operatorname{span}(B)
+ \ge A_0-o(1).
+\end{equation}
+
+\section{Shifted block pinching}
+
+Let
+\[
+ x_1<\cdots<x_{S^\circ}
+\]
+be the normalised ordinates of the retained central simple zeros.  Then
+\begin{equation}\label{eq:Scentral}
+ S^\circ=N_0^s(T,2T)-o(N(T,2T)).
+\end{equation}
+For each of the $m=269$ offsets, partition the ordered points into full
+consecutive blocks of size $m$, leaving at most $2(m-1)$ endpoint points.
+Pinching $M^\circ$ to the full principal blocks and the remaining block gives
+\begin{equation}\label{eq:pinching}
+ \cD(M^\circ)\ge\sum_B\cD(G_B).
+\end{equation}
+This follows because pinching is an average of unitary conjugations and
+$X\mapsto\tr\Psi(X)$ is convex and unitarily invariant.
+
+For each offset, sum \eqref{eq:269block} over the full blocks and use
+\eqref{eq:pinching}; then average over the $m$ offsets.  The average number of
+full blocks is $S^\circ/m+O(1)$.  Each gap $x_{j+1}-x_j$ belongs to a block
+span for at most $m-1$ offsets, and
+\[
+ x_{S^\circ}-x_1
+ \le\frac{T}{h}
+ =\frac{LT}{2\pi}
+ =d+O(1)
+ =N(T,2T)+o(N(T,2T))
+\]
+by the Riemann--von Mangoldt formula.  The blockwise $o(1)$ term in
+\eqref{eq:269block} is uniform, so its total is $o(N(T,2T))$.  Therefore
+\begin{equation}\label{eq:defect-global}
+ \cD(M^\circ)
+ \ge \frac{A_0}{m}N_0^s(T,2T)
+ -\frac{m-1}{500m}N(T,2T)-o(N(T,2T)).
+\end{equation}
+With $m=269$ and $A_0=4997/5000$,
+\begin{equation}\label{eq:defect-numbers}
+ \cD(M^\circ)
+ \ge
+ \frac{4997}{1{,}345{,}000}N_0^s(T,2T)
+ -\frac{268}{134{,}500}N(T,2T)-o(N(T,2T)).
+\end{equation}
+
+Substitute \eqref{eq:defect-numbers} into \eqref{eq:global-defect}.  This gives
+\begin{align*}
+ N_0^s(T,2T)
+ &\ge H_{\mathrm{MT}}N(T,2T)
+ +\frac{4997}{1{,}345{,}000}N_0^s(T,2T)\\
+ &\qquad-\frac{268}{134{,}500}N(T,2T)-o(N(T,2T)).
+\end{align*}
+Hence
+\[
+ \left(1-\frac{4997}{1{,}345{,}000}\right)N_0^s(T,2T)
+ \ge
+ \left(H_{\mathrm{MT}}-\frac{268}{134{,}500}\right)N(T,2T)
+ -o(N(T,2T)).
+\]
+Divide by $N(T,2T)$ and let $T\to\infty$ to obtain
+\[
+ \liminf_{T\to\infty}\frac{N_0^s(T,2T)}{N(T,2T)}
+ \ge
+ \frac{1{,}345{,}000H_{\mathrm{MT}}-2{,}680}{1{,}340{,}003}
+ =0.6730085279277797613\ldots .
+\]
+This proves Theorem~\ref{thm:main}.
+
+\section*{Reproducibility}
+
+Proposition~\ref{prop:F6} is the only computer-assisted input.  Its source,
+tests, trust-base description, and certificate are available at
+\begin{center}
+\url{https://github.com/ainta/zeta-simple-zeros}.
+\end{center}
+The verifier reconstructs every transcendental interval enclosure from the
+stated formulas.
+
+\begin{thebibliography}{99}
+
+\bibitem{Claude26}
+Claude,
+\emph{More than two thirds of the zeros of the Riemann zeta function lie on the critical line},
+preprint, August 10, 2026,
+\href{https://www-cdn.anthropic.com/564f962e60643842f5fcb4a17c9dbc8f608f1c37.pdf}
+{available online}.
+
+\bibitem{Johansson17}
+F.~Johansson,
+\emph{Arb: efficient arbitrary-precision midpoint-radius interval arithmetic},
+IEEE Trans. Comput. \textbf{66} (2017), no.~8, 1281--1292.
+
+\bibitem{Mon73}
+H.~L.~Montgomery,
+\emph{The pair correlation of zeros of the zeta function},
+in: Analytic Number Theory (St. Louis, 1972),
+Proc. Sympos. Pure Math. \textbf{24}, Amer. Math. Soc., 1973, 181--193.
+
+\bibitem{Mon75}
+H.~L.~Montgomery,
+\emph{Distribution of the zeros of the Riemann zeta function},
+in: Proceedings of the International Congress of Mathematicians
+(Vancouver, 1974), Vol.~1,
+Canad. Math. Congress, 1975, 379--381.
+
+\end{thebibliography}
+
+\end{document}

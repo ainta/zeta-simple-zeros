@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zeta-simple-zeros"
+version = "0.1.0"
+description = "Reproducible verification for a 67.30085% lower bound on simple zeta zeros on the critical line"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "ainta", email = "ainta98@gmail.com" }]
+dependencies = ["python-flint>=0.6,<1"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.scripts]
+zeta-zero-verify = "zeta_simple_zeros.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

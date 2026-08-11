@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this research artifact, please cite this repository."
+title: "A 67.30085% lower bound for simple zeros of the Riemann zeta function"
+type: software
+authors:
+  - name: ainta
+    email: ainta98@gmail.com
+version: 0.1.0
+date-released: 2026-08-10
+license: MIT
